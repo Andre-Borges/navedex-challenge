@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
 import './styles.css';
@@ -6,6 +7,9 @@ import './styles.css';
 import foto from '../../assets/foto.jpg';
 
 export default function Home() {
+  /** Recurso para navegar entre as telas */
+  const { push } = useHistory();
+
   const [navers, setNavers] = useState([]);
 
   async function getNavers() {
@@ -23,11 +27,17 @@ export default function Home() {
     }
   }, []);
 
+  function handleClickAdd() {
+    push('/naver/register');
+  }
+
   return (
     <div className="home-container">
       <header>
         <h2>Navers</h2>
-        <button className="add-naver">Adicionar Naver</button>
+        <button className="add-naver" onClick={handleClickAdd}>
+          Adicionar Naver
+        </button>
       </header>
       <div className="navers">
         {navers.map((naver, key) => (

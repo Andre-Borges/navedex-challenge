@@ -1,0 +1,77 @@
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 100vh;
+}
+
+.login-container .login {
+  width: 448px;
+  border: 1px solid #212121;
+  box-sizing: border-box;
+  padding: 35px;
+}
+
+.login-container .login > img {
+  display: flex;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
+.login-container form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container form > div + div {
+  margin-top: 30px;
+}
+
+.login-container form label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.login-container form input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 40px;
+  background: #fff;
+  border: 1px solid #424242;
+  padding: 5px;
+}
+
+.login-container form button {
+  color: #fff;
+  background: #000;
+  width: 100%;
+  height: 40px;
+  margin-top: 30px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: opacity 0.3s ease;
+}
+
+.login-container button:hover,
+.login-container a.signup:hover {
+  opacity: 0.8;
+}
+
+.login-container a.signup {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  text-decoration: underline;
+  transition: opacity 0.3s ease;
+}
+
+.login-container form span.error-danger {
+  color: red;
+  margin-top: 2px;
+  font-size: 12px;
+}

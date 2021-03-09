@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Menu from '../components/Menu/';
-
-import Login from '../pages/Login';
 import Home from '../pages/Home';
+import Naver from '../pages/Naver';
+
+import Menu from '../components/Menu';
 
 export default function Routes() {
   return (
@@ -14,7 +14,8 @@ export default function Routes() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/home" exact component={Home} />
-          <Route path="/login" exact component={Login} />
+          <Route path="/naver/register" exact component={Naver} />
+          <Route path="/naver/register/:id" exact component={Naver} />
         </Switch>
       </BrowserRouter>
     </>

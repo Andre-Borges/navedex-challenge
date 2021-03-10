@@ -15,7 +15,6 @@ export default function Home() {
   async function getNavers() {
     const response = await api.get('/navers');
     setNavers(response.data);
-    console.log(response.data);
   }
 
   /** Busco todas as informações dos navers quando o componente é criado */
@@ -41,7 +40,7 @@ export default function Home() {
       </header>
       <div className="navers">
         {navers.map((naver, key) => (
-          <div key={naver.name}>
+          <div key={naver.id}>
             <img src={foto} alt="avatar" />
             <span className="name">{naver.name}</span>
             <span className="job-role">{naver.job_role}</span>

@@ -23,13 +23,10 @@ export default function Login() {
         password: password,
       })
       .then((response) => {
-        console.log(response.data);
         toast.success('Bem Vindo!');
         return response;
       })
       .catch((err) => {
-        alert('não funcionou');
-        console.log(err.response);
         return err.response;
       });
 

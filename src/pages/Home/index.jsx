@@ -45,7 +45,7 @@ export default function Home() {
             <img src={foto} alt="avatar" />
             <span className="name">{naver.name}</span>
             <span className="job-role">{naver.job_role}</span>
-            <button type="button">
+            <button>
               <img src="/icons/delete.svg" alt="Deletar naver" />
             </button>
             <button>

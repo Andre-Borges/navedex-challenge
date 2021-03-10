@@ -9,14 +9,14 @@ import './styles.css';
 import api from '../../services/api';
 
 export default function SignUp() {
-  /** Recurso para navegar entre as telas */
+  /* Recurso para navegar entre as telas */
   const { push } = useHistory();
 
-  /** API do react-hook-form */
+  /* API do react-hook-form */
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = handleSubmit(async ({ email, password }) => {
-    /** Request para cadastrar o usuário */
+    /* Request para cadastrar o usuário */
     const request = await api
       .post('/users/signup', {
         email: email,
@@ -29,7 +29,7 @@ export default function SignUp() {
         return err.response;
       });
 
-    /** Se deu sucesso, redireciono para o Login */
+    /* Se deu sucesso, redireciono para o Login */
     if (request.status === 200) {
       toast.success('Cadastro realizado com sucesso!');
       push('/');

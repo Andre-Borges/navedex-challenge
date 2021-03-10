@@ -1,0 +1,73 @@
+.naver-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin: 0 auto;
+}
+
+.naver-container .naver {
+  max-width: 590px;
+  width: 100%;
+}
+
+.naver-container header {
+  display: flex;
+  font-size: 24px;
+  font-weight: 600;
+  padding-bottom: 40px;
+  color: #212121;
+}
+
+.naver-container header img {
+  margin-right: 20px;
+}
+
+.naver-container form {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  grid-auto-rows: auto;
+  grid-gap: 30px;
+}
+
+.naver-container form > div {
+  display: grid;
+}
+
+.naver-container form > div > label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #212121;
+}
+
+.naver-container form > div > input {
+  border: 1px solid #424224;
+  height: 40px;
+  padding: 5px;
+}
+
+.naver-container form > button {
+  grid-column: 2;
+  color: #fff;
+  background: #212121;
+  border: 0;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  width: 176px;
+  margin-left: auto;
+  transition: opacity 0.3s ease;
+}
+
+.naver-container form > button:hover {
+  opacity: 0.8;
+}
+
+.naver-container form span.error-danger {
+  color: red;
+  margin-top: 2px;
+  font-size: 12px;
+}

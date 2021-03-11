@@ -1,0 +1,78 @@
+.modal-exclusion-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: -30%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-exclusion-container {
+  background: #fff;
+  width: 100%;
+  max-width: 592px;
+  height: 233px;
+  padding: 32px;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.modal-exclusion-container header {
+  margin-bottom: 35px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-exclusion-container h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #212121;
+}
+
+.modal-exclusion-container span {
+  font-size: 16px;
+  color: #212121;
+}
+
+.modal-exclusion-container > div {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  width: 72%;
+  margin-left: auto;
+}
+
+.modal-exclusion-container button.btn-cancel {
+  background: transparent;
+  border: 1px solid #212121;
+  top: 15px;
+  right: 20px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 600;
+  width: 176px;
+  height: 40px;
+  transition: opacity 0.3s ease;
+}
+
+.modal-exclusion-container button.btn-delete {
+  color: #fff;
+  background: #212121;
+  border: 1px solid #212121;
+  top: 15px;
+  right: 20px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 600;
+  width: 176px;
+  height: 40px;
+  transition: opacity 0.3s ease;
+}
+
+.modal-exclusion-container button:hover {
+  opacity: 0.8;
+}

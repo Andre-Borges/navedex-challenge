@@ -36,8 +36,6 @@ export default function Login() {
       });
     setLoading(false);
 
-    console.log(request.status);
-
     /* Mostro o retorno caso dê erro (usuario inexistente, senha incorreta) */
     if (request.status !== 200) {
       toast.error(request.data.message);

@@ -8,12 +8,12 @@ import './styles.css';
 
 import api from '../../services/api';
 import { formatDateToLocaleString } from '../../utils/global';
-import Modal from '../../components/Modal/ModalConfirmation';
+import ModalConfirmation from '../../components/Modal/ModalConfirmation';
 import FullPageLoader from '../../components/FullPageLoader';
 
 export default function Naver() {
   const [loading, setLoading] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalConfirmationOpen, setIsModalConfirmationOpen] = useState(false);
 
   /* Recurso para navegar entre as telas */
   const { push } = useHistory();
@@ -24,7 +24,7 @@ export default function Naver() {
 
   const onSubmit = handleSubmit(
     async ({ job_role, admission_date, birthdate, project, name, url }) => {
-      setIsModalOpen(false);
+      setIsModalConfirmationOpen(false);
 
       /* Request para cadastrar um Naver */
       setLoading(true);
@@ -47,7 +47,7 @@ export default function Naver() {
 
       /* Se deu sucesso, redireciono para o Login */
       if (request.status === 200) {
-        setIsModalOpen(true);
+        setIsModalConfirmationOpen(true);
         /*push('/');*/
       } else {
         toast.error(request.data.message);
@@ -55,14 +55,18 @@ export default function Naver() {
     }
   );
 
+  function closeModalConfirmation() {
+    setIsModalConfirmationOpen(false);
+  }
+
   return (
     <div className="naver-container">
-      {isModalOpen && (
-        <Modal
+      {isModalConfirmationOpen && (
+        <ModalConfirmation
           title="Naver Criado"
           message="Naver criado com sucesso!"
-          isOpen={true}
-        ></Modal>
+          closeModalConfirmation={closeModalConfirmation}
+        ></ModalConfirmation>
       )}
       <div className="naver">
         <header>

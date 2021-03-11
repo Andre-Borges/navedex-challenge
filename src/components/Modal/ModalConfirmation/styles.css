@@ -1,4 +1,4 @@
-.modal-overlay {
+.modal-confirmation-overlay {
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: -30%;
@@ -11,7 +11,7 @@
   align-items: center;
 }
 
-.modal-container {
+.modal-confirmation-container {
   background: #fff;
   width: 100%;
   max-width: 592px;
@@ -21,25 +21,28 @@
   position: relative;
 }
 
-.modal-container header {
+.modal-confirmation-container header {
   margin-bottom: 35px;
   display: flex;
   justify-content: space-between;
 }
 
-.modal-container h1 {
+.modal-confirmation-container h1 {
   font-size: 24px;
   font-weight: 600;
+  color: #212121;
 }
 
-.modal-container button {
+.modal-confirmation-container button {
   background: transparent;
   border: 0;
   position: absolute;
   top: 15px;
   right: 20px;
+  outline: none;
 }
 
-.modal-container span {
+.modal-confirmation-container span {
   font-size: 16px;
+  color: #212121;
 }

@@ -69,4 +69,5 @@
   background: transparent;
   transition: opacity 0.3s ease;
   width: 30px;
+  outline: none;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
@@ -8,7 +8,11 @@ import './styles.css';
 import { useAuth } from '../../contexts/auth';
 import api from '../../services/api';
 
+import FullPageLoader from '../../components/FullPageLoader';
+
 export default function Login() {
+  const [loading, setLoading] = useState(false);
+
   /* Recuperando contexto (usuário logado) */
   const context = useAuth();
 
@@ -17,6 +21,7 @@ export default function Login() {
 
   const onSubmit = handleSubmit(async ({ email, password }) => {
     /** Tentativa de logar na aplicação*/
+    setLoading(true);
     const request = await api
       .post('/users/login', {
         email: email,
@@ -29,6 +34,9 @@ export default function Login() {
       .catch((err) => {
         return err.response;
       });
+    setLoading(false);
+
+    console.log(request.status);
 
     /* Mostro o retorno caso dê erro (usuario inexistente, senha incorreta) */
     if (request.status !== 200) {
@@ -87,6 +95,7 @@ export default function Login() {
           </Link>
         </div>
       </div>
+      {loading && <FullPageLoader />}
     </div>
   );
 }

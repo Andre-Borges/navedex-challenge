@@ -9,8 +9,10 @@ import './styles.css';
 import api from '../../services/api';
 import { formatDateToLocaleString } from '../../utils/global';
 import Modal from '../../components/Modal/ModalConfirmation';
+import FullPageLoader from '../../components/FullPageLoader';
 
 export default function Naver() {
+  const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   /* Recurso para navegar entre as telas */
@@ -25,6 +27,7 @@ export default function Naver() {
       setIsModalOpen(false);
 
       /* Request para cadastrar um Naver */
+      setLoading(true);
       const request = await api
         .post('/navers', {
           job_role: job_role,
@@ -40,6 +43,7 @@ export default function Naver() {
         .catch((err) => {
           return err.response;
         });
+      setLoading(false);
 
       /* Se deu sucesso, redireciono para o Login */
       if (request.status === 200) {
@@ -163,6 +167,7 @@ export default function Naver() {
           <button type="submit">Salvar</button>
         </form>
       </div>
+      {loading && <FullPageLoader />}
     </div>
   );
 }

@@ -6,21 +6,26 @@ import './styles.css';
 
 import foto from '../../assets/foto.jpg';
 
+import FullPageLoader from '../../components/FullPageLoader';
+
 export default function Home() {
   /** Recurso para navegar entre as telas */
   const { push } = useHistory();
 
+  const [loading, setLoading] = useState(true);
   const [navers, setNavers] = useState([]);
 
   async function getNavers() {
     const response = await api.get('/navers');
     setNavers(response.data);
+    return false;
   }
 
   /** Busco todas as informações dos navers quando o componente é criado */
   useEffect(() => {
     try {
       getNavers();
+      setLoading(false);
     } catch (error) {
       console.log('error: ', error);
     }
@@ -53,6 +58,7 @@ export default function Home() {
           </div>
         ))}
       </div>
+      {loading && <FullPageLoader />}
     </div>
   );
 }

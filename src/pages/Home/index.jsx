@@ -10,6 +10,7 @@ import foto from '../../assets/foto.jpg';
 import FullPageLoader from '../../components/FullPageLoader';
 import ModalConfirmation from '../../components/Modal/ModalConfirmation';
 import ModalExclusion from '../../components/Modal/ModalExclusion';
+import ModalNaver from '../../components/Modal/ModalNaver';
 
 export default function Home() {
   /** Recurso para navegar entre as telas */
@@ -17,13 +18,25 @@ export default function Home() {
 
   const [loading, setLoading] = useState(true);
   const [navers, setNavers] = useState([]);
+  const [naver, setNaver] = useState([]);
   const [isModalConfirmationOpen, setIsModalConfirmationOpen] = useState(false);
   const [isModalExclusionOpen, setIsModalExclusionOpen] = useState(false);
+  const [isModalNaverOpen, setIsModalNaverOpen] = useState(false);
   const [idSelected, setIdSelected] = useState(null);
 
   async function getNavers() {
     const response = await api.get('/navers');
     setNavers(response.data);
+  }
+
+  async function getNaverById(id) {
+    console.log(id);
+    setIdSelected(id);
+    setLoading(true);
+    const request = await api.get(`/navers/${id}`);
+    setNaver(request.data);
+    setLoading(false);
+    toggleModalNaver();
   }
 
   /** Busco todas as informações dos navers quando o componente é criado */
@@ -44,18 +57,20 @@ export default function Home() {
     setIsModalConfirmationOpen(false);
   }
 
+  function toggleModalNaver() {
+    setIsModalNaverOpen(!isModalNaverOpen);
+  }
+
   function handleClickAdd() {
     push('/naver/register');
   }
 
   function handleClickDelete(id) {
-    console.log(id);
     setIsModalExclusionOpen(true);
     setIdSelected(id);
   }
 
   async function deleteNaver(id) {
-    console.log('delete naver');
     setLoading(true);
     const request = await api
       .delete(`/navers/${id}`)
@@ -92,7 +107,7 @@ export default function Home() {
             <button onClick={() => handleClickDelete(naver.id)}>
               <img src="/icons/delete.svg" alt="Deletar naver" />
             </button>
-            <button>
+            <button onClick={() => getNaverById(naver.id)}>
               <img src="/icons/edit.svg" alt="Editar naver" />
             </button>
           </div>
@@ -112,6 +127,13 @@ export default function Home() {
           message="Naver excluído com sucesso!"
           closeModalConfirmation={closeModalConfirmation}
         ></ModalConfirmation>
+      )}
+      {isModalNaverOpen && (
+        <ModalNaver
+          naver={naver}
+          toggleModalNaver={toggleModalNaver}
+          handleClickDelete={() => handleClickDelete(idSelected)}
+        ></ModalNaver>
       )}
       {loading && <FullPageLoader />}
     </div>

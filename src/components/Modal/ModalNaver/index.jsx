@@ -1,31 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import moment from 'moment';
 
 import './styles.css';
 
-export default function ModalExclusion({
-  title,
-  message,
-  deleteNaver,
-  closeModalExclusion,
-}) {
+import foto from '../../../assets/foto.jpg';
+
+export default function ModalNaver({ naver, toggleModalNaver, handleClickDelete }) {
   function close() {
-    closeModalExclusion();
+    toggleModalNaver();
   }
 
   return ReactDOM.createPortal(
-    <div className="modal-exclusion-overlay">
-      <div className="modal-exclusion-container">
-        <header>
-          <h1>{title}</h1>
-        </header>
-        <span>{message}</span>
+    <div className="modal-naver-overlay">
+      <div className="modal-naver-container">
+        <div className="naver-avatar">
+          <img src={foto} alt="" />
+        </div>
         <div>
-          <button type="button" className="btn-cancel" onClick={close}>
-            Cancelar
-          </button>
-          <button type="button" className="btn-delete" onClick={deleteNaver}>
-            Excluir
+          <h1>{naver.name}</h1>
+          <span>{naver.job_role}</span>
+          <span className="title">Idade</span>
+          <span>{moment(naver.birthdate).fromNow().replace(/\D/g, '')} anos</span>
+          <span className="title">Tempo de empresa</span>
+          <span>{naver.admission_date}</span>
+          <span className="title">Projetos que participou</span>
+          <span>{naver.project}</span>
+          <div className="action-buttons">
+            <button className="action" onClick={() => handleClickDelete(naver.id)}>
+              <img src="/icons/delete.svg" alt="Deletar naver" />
+            </button>
+            <button className="action">
+              <img src="/icons/edit.svg" alt="Editar naver" />
+            </button>
+          </div>
+          <button className="btn-close" type="button" onClick={close}>
+            <img src="/icons/close.svg" alt="Fechar modal" />
           </button>
         </div>
       </div>

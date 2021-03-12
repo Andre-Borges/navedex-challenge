@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 import './styles.css';
 
@@ -31,7 +32,9 @@ export default function ModalNaver({ naver, toggleModalNaver, handleClickDelete 
               <img src="/icons/delete.svg" alt="Deletar naver" />
             </button>
             <button className="action">
-              <img src="/icons/edit.svg" alt="Editar naver" />
+              <Link to={`/naver/register/${encodeURIComponent(naver.id)}`}>
+                <img src="/icons/edit.svg" alt="Editar naver" />
+              </Link>
             </button>
           </div>
           <button className="btn-close" type="button" onClick={close}>

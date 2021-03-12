@@ -9,8 +9,9 @@ import Menu from '../components/Menu';
 export default function Routes() {
   return (
     <>
-      <Menu />
       <BrowserRouter>
+        <Menu />
+
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/home" exact component={Home} />

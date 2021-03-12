@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --black: #000000;
+  --dark-gray: #212121;
+}
+
 body {
   background: #fff;
   font-family: 'Montserrat', sans-serif;

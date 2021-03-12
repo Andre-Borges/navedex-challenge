@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
@@ -12,6 +12,9 @@ import ModalConfirmation from '../../components/Modal/ModalConfirmation';
 import FullPageLoader from '../../components/FullPageLoader';
 
 export default function Naver() {
+  /* Verifica se tem id, se tiver é modo de edição */
+  const { id } = useParams();
+
   const [loading, setLoading] = useState(false);
   const [isModalConfirmationOpen, setIsModalConfirmationOpen] = useState(false);
 
@@ -70,10 +73,10 @@ export default function Naver() {
       )}
       <div className="naver">
         <header>
-          <Link to="/home" className="home">
+          <Link to="/home">
             <img src="/icons/back.svg" alt="" />
           </Link>
-          Adicionar Naver
+          {id ? 'Editar Naver' : 'Adicionar Naver'}
         </header>
         <form onSubmit={onSubmit}>
           <div>

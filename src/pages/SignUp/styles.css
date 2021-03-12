@@ -9,7 +9,7 @@
 
 .signup-container .signup {
   width: 448px;
-  border: 1px solid #212121;
+  border: 1px solid var(--dark-gray);
   box-sizing: border-box;
   padding: 35px;
 }
@@ -47,7 +47,7 @@
 
 .signup-container form button {
   color: #fff;
-  background: #000;
+  background: var(--black);
   width: 100%;
   height: 40px;
   margin-top: 30px;

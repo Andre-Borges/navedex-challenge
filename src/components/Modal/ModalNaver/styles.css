@@ -32,7 +32,7 @@
 .modal-naver-container h1 {
   font-size: 24px;
   font-weight: 600;
-  color: #000000;
+  color: var(--black);
 }
 
 .modal-naver-container .title {
@@ -42,7 +42,7 @@
 
 .modal-naver-container span {
   font-size: 16px;
-  color: #212121;
+  color: var(--dark-gray);
 }
 
 .modal-naver-container span:not(.title) {

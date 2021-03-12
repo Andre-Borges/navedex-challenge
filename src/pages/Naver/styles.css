@@ -18,7 +18,7 @@
   font-size: 24px;
   font-weight: 600;
   padding-bottom: 40px;
-  color: #212121;
+  color: var(--dark-gray);
 }
 
 .naver-container header img {
@@ -40,7 +40,7 @@
   margin-bottom: 5px;
   font-size: 14px;
   font-weight: 600;
-  color: #212121;
+  color: var(--dark-gray);
 }
 
 .naver-container form > div > input {
@@ -52,7 +52,7 @@
 .naver-container form > button {
   grid-column: 2;
   color: #fff;
-  background: #212121;
+  background: var(--dark-gray);
   border: 0;
   height: 40px;
   font-size: 14px;

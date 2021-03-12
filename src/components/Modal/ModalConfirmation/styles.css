@@ -30,7 +30,7 @@
 .modal-confirmation-container h1 {
   font-size: 24px;
   font-weight: 600;
-  color: #212121;
+  color: var(--dark-gray);
 }
 
 .modal-confirmation-container button {
@@ -44,5 +44,5 @@
 
 .modal-confirmation-container span {
   font-size: 16px;
-  color: #212121;
+  color: var(--dark-gray);
 }

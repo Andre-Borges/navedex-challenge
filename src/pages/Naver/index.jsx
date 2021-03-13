@@ -15,7 +15,8 @@ export default function Naver() {
   /* Verifica se tem id, se tiver é modo de edição */
   const { id } = useParams();
 
-  const [naver, setNaver] = useState([]);
+  const [edit, setEdit] = useState(false);
+  const [naver, setNaver] = useState({});
   const [loading, setLoading] = useState(false);
   const [isModalConfirmationOpen, setIsModalConfirmationOpen] = useState(false);
 
@@ -40,18 +41,17 @@ export default function Naver() {
   useEffect(() => {
     if (id) {
       getNaverById(id);
+      setEdit(true);
     }
-  }, []);
+  }, [id]);
 
   const onSubmit = handleSubmit(
     async ({ job_role, admission_date, birthdate, project, name, url }) => {
-      console.log(id);
       setIsModalConfirmationOpen(false);
       let request = null;
       /* Request para cadastrar um Naver */
       setLoading(true);
-      /* Se tiver id = edição */
-      if (id) {
+      if (edit) {
         request = await api
           .put(`/navers/${id}`, {
             job_role: job_role,
@@ -86,10 +86,9 @@ export default function Naver() {
       }
       setLoading(false);
 
-      /* Se deu sucesso, redireciono para o Login */
+      /* Se deu sucesso, redireciono para Home */
       if (request.status === 200) {
         setIsModalConfirmationOpen(true);
-        /*push('/');*/
       } else {
         toast.error(request.data.message);
       }
@@ -98,6 +97,7 @@ export default function Naver() {
 
   function closeModalConfirmation() {
     setIsModalConfirmationOpen(false);
+    push('/home');
   }
 
   return (
@@ -114,7 +114,7 @@ export default function Naver() {
           <Link to="/home">
             <img src="/icons/back.svg" alt="" />
           </Link>
-          {id ? 'Editar Naver' : 'Adicionar Naver'}
+          {edit ? 'Editar Naver' : 'Adicionar Naver'}
         </header>
         <form onSubmit={onSubmit}>
           <div>
@@ -124,6 +124,7 @@ export default function Naver() {
               name="name"
               placeholder="Nome"
               value={naver.name && naver.name}
+              onChange={(e) => setNaver({ ...naver, name: e.target.value })}
               ref={register({
                 required: 'Esse campo é obrigatório',
                 minLength: {
@@ -140,7 +141,8 @@ export default function Naver() {
               type="text"
               name="job_role"
               placeholder="Cargo"
-              value={naver.job_role && naver.job_role}
+              value={naver.job_role}
+              onChange={(e) => setNaver({ ...naver, job_role: e.target.value })}
               ref={register({
                 required: 'Esse campo é obrigatório',
                 minLength: {
@@ -159,7 +161,8 @@ export default function Naver() {
               type="date"
               name="birthdate"
               placeholder="Idade"
-              value={naver.birthdate && formatDateUS(naver.birthdate)}
+              value={formatDateUS(naver.birthdate)}
+              onChange={(e) => setNaver({ ...naver, birthdate: e.target.value })}
               ref={register({
                 required: 'Esse campo é obrigatório',
               })}
@@ -174,7 +177,10 @@ export default function Naver() {
               type="date"
               name="admission_date"
               placeholder="Tempo de empresa"
-              value={naver.admission_date && formatDateUS(naver.admission_date)}
+              value={formatDateUS(naver.admission_date)}
+              onChange={(e) =>
+                setNaver({ ...naver, admission_date: formatDateUS(e.target.value) })
+              }
               ref={register({
                 required: 'Esse campo é obrigatório',
               })}
@@ -189,7 +195,8 @@ export default function Naver() {
               type="text"
               name="project"
               placeholder="Projetos que participou"
-              value={naver.project && naver.project}
+              value={naver.project}
+              onChange={(e) => setNaver({ ...naver, project: e.target.value })}
               ref={register({
                 required: 'Esse campo é obrigatório',
               })}
@@ -204,7 +211,8 @@ export default function Naver() {
               type="text"
               name="url"
               placeholder="URL da foto do Naver"
-              value={naver.url && naver.url}
+              value={naver.url}
+              onChange={(e) => setNaver({ ...naver, url: e.target.value })}
               ref={register({
                 required: 'Esse campo é obrigatório',
                 minLength: {

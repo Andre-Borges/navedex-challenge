@@ -18,7 +18,7 @@ export default function Home() {
 
   const [loading, setLoading] = useState(true);
   const [navers, setNavers] = useState([]);
-  const [naver, setNaver] = useState([]);
+  const [naver, setNaver] = useState({});
   const [isModalConfirmationOpen, setIsModalConfirmationOpen] = useState(false);
   const [isModalExclusionOpen, setIsModalExclusionOpen] = useState(false);
   const [isModalNaverOpen, setIsModalNaverOpen] = useState(false);
@@ -32,7 +32,6 @@ export default function Home() {
   }
 
   async function getNaverById(id) {
-    console.log(id);
     setIdSelected(id);
     setLoading(true);
     try {
@@ -88,6 +87,14 @@ export default function Home() {
     setLoading(false);
 
     if (request.status === 200) {
+      const arrayNavers = [];
+      arrayNavers.push(...navers);
+
+      const index = arrayNavers.findIndex((item) => item.id === id);
+      arrayNavers.splice(index, 1);
+
+      setNavers(arrayNavers);
+
       setIsModalConfirmationOpen(true);
       closeModalExclusion();
     } else {
@@ -106,7 +113,7 @@ export default function Home() {
       <div className="navers">
         {navers.map((naver, key) => (
           <div key={naver.id}>
-            <img src={foto} alt="avatar" />
+            <img src={naver.url} alt="avatar" onError={(e) => (e.target.src = foto)} />
             <span className="name">{naver.name}</span>
             <span className="job-role">{naver.job_role}</span>
             <button onClick={() => handleClickDelete(naver.id)}>

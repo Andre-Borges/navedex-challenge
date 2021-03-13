@@ -4,6 +4,8 @@ import { useAuth } from '../../contexts/auth';
 
 import './styles.css';
 
+import imgLogo from './assets/logo-header.png';
+
 export default function Menu() {
   const { push } = useHistory();
 
@@ -20,7 +22,7 @@ export default function Menu() {
     <>
       <div className="menu-container">
         <Link to="/home">
-          <img src="logo-header.png" alt="Logo" />
+          <img src={imgLogo} alt="Logo" />
         </Link>
         <button onClick={logOut}>Sair</button>
       </div>

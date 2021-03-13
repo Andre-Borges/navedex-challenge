@@ -21,6 +21,8 @@
   position: relative;
 
   display: flex;
+
+  overflow-y: auto;
 }
 
 .modal-naver-container header {
@@ -43,6 +45,7 @@
 .modal-naver-container span {
   font-size: 16px;
   color: var(--dark-gray);
+  word-break: break-all;
 }
 
 .modal-naver-container span:not(.title) {
@@ -78,9 +81,7 @@
 }
 
 .modal-naver-container .action-buttons {
-  display: flex;
-  position: absolute;
-  bottom: 30px;
+  margin-top: 80px;
 }
 
 .modal-naver-container button + button {
@@ -90,6 +91,24 @@
 @media (max-width: 768px) {
   .modal-naver-overlay {
     padding: 15px;
-    top: -35%;
+  }
+  .modal-naver-container {
+    display: block;
+    max-height: unset;
+  }
+  .modal-naver-container .naver-avatar {
+    margin: 0 auto;
+  }
+  .modal-naver-container > div + div {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+  }
+  .modal-naver-container .action-buttons {
+    margin-top: 40px;
+  }
+  .modal-naver-container .action-buttons > button + button {
+    margin-left: 40px;
   }
 }

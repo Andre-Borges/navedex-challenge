@@ -31,7 +31,7 @@
 }
 
 .home-container button.add-naver:hover,
-.home-container .navers div > button:hover {
+.home-container .navers div > button > img:hover {
   opacity: 0.8;
 }
 
@@ -68,9 +68,13 @@
   margin-top: 15px;
   border: 0;
   background: transparent;
-  transition: opacity 0.3s ease;
   width: 30px;
   outline: none;
+  cursor: default;
+}
+
+.home-container .navers div > button > img {
+  transition: opacity 0.3s ease;
 }
 
 @media (max-width: 991px) {

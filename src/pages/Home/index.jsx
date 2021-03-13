@@ -116,11 +116,21 @@ export default function Home() {
             <img src={naver.url} alt="avatar" onError={(e) => (e.target.src = foto)} />
             <span className="name">{naver.name}</span>
             <span className="job-role">{naver.job_role}</span>
-            <button onClick={() => handleClickDelete(naver.id)}>
-              <img src="/icons/delete.svg" alt="Deletar naver" />
+            <button>
+              <img
+                style={{ cursor: 'pointer' }}
+                src="/icons/delete.svg"
+                alt="Deletar naver"
+                onClick={() => handleClickDelete(naver.id)}
+              />
             </button>
-            <button onClick={() => getNaverById(naver.id)}>
-              <img src="/icons/edit.svg" alt="Editar naver" />
+            <button>
+              <img
+                style={{ cursor: 'pointer' }}
+                src="/icons/edit.svg"
+                alt="Editar naver"
+                onClick={() => getNaverById(naver.id)}
+              />
             </button>
           </div>
         ))}

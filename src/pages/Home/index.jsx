@@ -25,25 +25,30 @@ export default function Home() {
   const [idSelected, setIdSelected] = useState(null);
 
   async function getNavers() {
+    setLoading(true);
     const response = await api.get('/navers');
     setNavers(response.data);
+    setLoading(false);
   }
 
   async function getNaverById(id) {
     console.log(id);
     setIdSelected(id);
     setLoading(true);
-    const request = await api.get(`/navers/${id}`);
-    setNaver(request.data);
+    try {
+      const request = await api.get(`/navers/${id}`);
+      setNaver(request.data);
+    } catch (error) {
+      console.log('error: ', error);
+    }
     setLoading(false);
     toggleModalNaver();
   }
 
-  /** Busco todas as informações dos navers quando o componente é criado */
+  /* Busco todas as informações dos navers quando o componente é criado */
   useEffect(() => {
     try {
       getNavers();
-      setLoading(false);
     } catch (error) {
       console.log('error: ', error);
     }

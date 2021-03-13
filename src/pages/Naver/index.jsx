@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import './styles.css';
 
 import api from '../../services/api';
-import { formatDateToLocaleString } from '../../utils/global';
+import { formatDateToLocaleString, formatDateUS } from '../../utils/global';
 import ModalConfirmation from '../../components/Modal/ModalConfirmation';
 import FullPageLoader from '../../components/FullPageLoader';
 
@@ -15,6 +15,7 @@ export default function Naver() {
   /* Verifica se tem id, se tiver é modo de edição */
   const { id } = useParams();
 
+  const [naver, setNaver] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isModalConfirmationOpen, setIsModalConfirmationOpen] = useState(false);
 
@@ -22,30 +23,67 @@ export default function Naver() {
   const { push } = useHistory();
 
   /* API do react-hook-form */
-  /* register pega o valor do input e passa para o handle submit */
   const { register, handleSubmit, errors } = useForm();
+
+  async function getNaverById(id) {
+    setLoading(true);
+    try {
+      const request = await api.get(`/navers/${id}`);
+      setNaver(request.data);
+    } catch (error) {
+      console.log('error: ', error);
+    }
+    setLoading(false);
+  }
+
+  /* Busco as informações dos navers quando for edição */
+  useEffect(() => {
+    if (id) {
+      getNaverById(id);
+    }
+  }, []);
 
   const onSubmit = handleSubmit(
     async ({ job_role, admission_date, birthdate, project, name, url }) => {
+      console.log(id);
       setIsModalConfirmationOpen(false);
-
+      let request = null;
       /* Request para cadastrar um Naver */
       setLoading(true);
-      const request = await api
-        .post('/navers', {
-          job_role: job_role,
-          admission_date: formatDateToLocaleString(admission_date),
-          birthdate: formatDateToLocaleString(birthdate),
-          project: project,
-          name: name,
-          url: url,
-        })
-        .then((response) => {
-          return response;
-        })
-        .catch((err) => {
-          return err.response;
-        });
+      /* Se tiver id = edição */
+      if (id) {
+        request = await api
+          .put(`/navers/${id}`, {
+            job_role: job_role,
+            admission_date: formatDateToLocaleString(admission_date),
+            birthdate: formatDateToLocaleString(birthdate),
+            project: project,
+            name: name,
+            url: url,
+          })
+          .then((response) => {
+            return response;
+          })
+          .catch((err) => {
+            return err.response;
+          });
+      } else {
+        request = await api
+          .post('/navers', {
+            job_role: job_role,
+            admission_date: formatDateToLocaleString(admission_date),
+            birthdate: formatDateToLocaleString(birthdate),
+            project: project,
+            name: name,
+            url: url,
+          })
+          .then((response) => {
+            return response;
+          })
+          .catch((err) => {
+            return err.response;
+          });
+      }
       setLoading(false);
 
       /* Se deu sucesso, redireciono para o Login */
@@ -85,6 +123,7 @@ export default function Naver() {
               type="text"
               name="name"
               placeholder="Nome"
+              value={naver.name && naver.name}
               ref={register({
                 required: 'Esse campo é obrigatório',
                 minLength: {
@@ -101,6 +140,7 @@ export default function Naver() {
               type="text"
               name="job_role"
               placeholder="Cargo"
+              value={naver.job_role && naver.job_role}
               ref={register({
                 required: 'Esse campo é obrigatório',
                 minLength: {
@@ -119,6 +159,7 @@ export default function Naver() {
               type="date"
               name="birthdate"
               placeholder="Idade"
+              value={naver.birthdate && formatDateUS(naver.birthdate)}
               ref={register({
                 required: 'Esse campo é obrigatório',
               })}
@@ -133,6 +174,7 @@ export default function Naver() {
               type="date"
               name="admission_date"
               placeholder="Tempo de empresa"
+              value={naver.admission_date && formatDateUS(naver.admission_date)}
               ref={register({
                 required: 'Esse campo é obrigatório',
               })}
@@ -147,6 +189,7 @@ export default function Naver() {
               type="text"
               name="project"
               placeholder="Projetos que participou"
+              value={naver.project && naver.project}
               ref={register({
                 required: 'Esse campo é obrigatório',
               })}
@@ -161,6 +204,7 @@ export default function Naver() {
               type="text"
               name="url"
               placeholder="URL da foto do Naver"
+              value={naver.url && naver.url}
               ref={register({
                 required: 'Esse campo é obrigatório',
                 minLength: {

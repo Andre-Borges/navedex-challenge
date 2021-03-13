@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { calculateTimeBetweenTwoDates } from '../../../utils/global';
 
 import './styles.css';
 
@@ -22,9 +22,19 @@ export default function ModalNaver({ naver, toggleModalNaver, handleClickDelete 
           <h1>{naver.name}</h1>
           <span>{naver.job_role}</span>
           <span className="title">Idade</span>
-          <span>{moment(naver.birthdate).fromNow().replace(/\D/g, '')} anos</span>
+          <span>{calculateTimeBetweenTwoDates(naver.birthdate, 'idade')} anos</span>
           <span className="title">Tempo de empresa</span>
-          <span>{naver.admission_date}</span>
+          {calculateTimeBetweenTwoDates(naver.admission_date, 'tempoEmpresa') < 1 ? (
+            <span>Menos de 1 mês</span>
+          ) : calculateTimeBetweenTwoDates(naver.admission_date, 'tempoEmpresa') === 1 ? (
+            <span>
+              {calculateTimeBetweenTwoDates(naver.admission_date, 'tempoEmpresa')} mês
+            </span>
+          ) : (
+            <span>
+              {calculateTimeBetweenTwoDates(naver.admission_date, 'tempoEmpresa')} meses
+            </span>
+          )}
           <span className="title">Projetos que participou</span>
           <span>{naver.project}</span>
           <div className="action-buttons">

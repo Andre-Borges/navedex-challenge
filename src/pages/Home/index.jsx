@@ -97,6 +97,7 @@ export default function Home() {
 
       setIsModalConfirmationOpen(true);
       closeModalExclusion();
+      toggleModalNaver();
     } else {
       toast.error(request.data.message);
     }

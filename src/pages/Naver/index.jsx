@@ -11,12 +11,21 @@ import { formatDateToLocaleString, formatDateUS } from '../../utils/global';
 import ModalConfirmation from '../../components/Modal/ModalConfirmation';
 import FullPageLoader from '../../components/FullPageLoader';
 
+const initialNavers = {
+  name: '',
+  job_role: '',
+  birthdate: '',
+  admission_date: '',
+  project: '',
+  url: '',
+};
+
 export default function Naver() {
   /* Verifica se tem id, se tiver é modo de edição */
   const { id } = useParams();
 
   const [edit, setEdit] = useState(false);
-  const [naver, setNaver] = useState({});
+  const [naver, setNaver] = useState(initialNavers);
   const [loading, setLoading] = useState(false);
   const [isModalConfirmationOpen, setIsModalConfirmationOpen] = useState(false);
 

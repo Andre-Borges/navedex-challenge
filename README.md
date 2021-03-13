@@ -27,4 +27,16 @@ O sistema consiste em uma web app para visualização e criação dos navers, po
 - axios - Realiza chamadas HTTP.
 - react-router-dom - Controle de rotas.
 - react-toastify - Mensagens de erros e sucesso.
-- react-hook-form - Validação dos formulários
+- react-hook-form - Validação dos formulários.
+
+## Funcionalidades
+
+- Login.
+- Listagem dos Navers.
+- Visualização dos Navers.
+- Criação / Edição dos Navers.
+- Layout Responsivo.
+
+## Layout
+
+- Layout feito através das telas do [Figma](https://www.figma.com/file/II8UDFm2uJFZaD0FOPcinP/Teste-Front-End)

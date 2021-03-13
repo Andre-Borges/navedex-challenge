@@ -114,7 +114,12 @@ export default function Home() {
       <div className="navers">
         {navers.map((naver, key) => (
           <div key={naver.id}>
-            <img src={naver.url} alt="avatar" onError={(e) => (e.target.src = foto)} />
+            <img
+              src={naver.url}
+              alt="avatar"
+              onError={(e) => (e.target.src = foto)}
+              onClick={() => getNaverById(naver.id)}
+            />
             <span className="name">{naver.name}</span>
             <span className="job-role">{naver.job_role}</span>
             <button>

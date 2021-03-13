@@ -11,7 +11,7 @@ import { formatDateToLocaleString, formatDateUS } from '../../utils/global';
 import ModalConfirmation from '../../components/Modal/ModalConfirmation';
 import FullPageLoader from '../../components/FullPageLoader';
 
-const initialNavers = {
+const initialNaver = {
   name: '',
   job_role: '',
   birthdate: '',
@@ -25,7 +25,7 @@ export default function Naver() {
   const { id } = useParams();
 
   const [edit, setEdit] = useState(false);
-  const [naver, setNaver] = useState(initialNavers);
+  const [naver, setNaver] = useState(initialNaver);
   const [loading, setLoading] = useState(false);
   const [isModalConfirmationOpen, setIsModalConfirmationOpen] = useState(false);
 

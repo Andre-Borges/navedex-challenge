@@ -32,7 +32,7 @@ export default function AuthProvider({ children }) {
 
   /** Função responsável por deslogar da aplicação */
   function Logout() {
-    localStorage.removeItem('Navers:token');
+    localStorage.removeItem('@Navers:token');
     setSigned(false);
   }
 

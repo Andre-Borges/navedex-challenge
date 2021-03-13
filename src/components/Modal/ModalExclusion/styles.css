@@ -39,11 +39,13 @@
 }
 
 .modal-exclusion-container > div {
-  margin-top: 40px;
   display: flex;
-  justify-content: space-between;
-  width: 72%;
-  margin-left: auto;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+
+.modal-exclusion-container > div > button + button {
+  margin-left: 20px;
 }
 
 .modal-exclusion-container button.btn-cancel {
@@ -75,4 +77,11 @@
 
 .modal-exclusion-container button:hover {
   opacity: 0.8;
+}
+
+@media (max-width: 575px) {
+  .modal-exclusion-overlay {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }

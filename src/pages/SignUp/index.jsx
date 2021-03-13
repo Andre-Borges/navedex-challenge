@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
@@ -8,7 +8,11 @@ import './styles.css';
 
 import api from '../../services/api';
 
+import FullPageLoader from '../../components/FullPageLoader';
+
 export default function SignUp() {
+  const [loading, setLoading] = useState(false);
+
   /* Recurso para navegar entre as telas */
   const { push } = useHistory();
 
@@ -17,6 +21,7 @@ export default function SignUp() {
 
   const onSubmit = handleSubmit(async ({ email, password }) => {
     /* Request para cadastrar o usuário */
+    setLoading(true);
     const request = await api
       .post('/users/signup', {
         email: email,
@@ -28,6 +33,7 @@ export default function SignUp() {
       .catch((err) => {
         return err.response;
       });
+    setLoading(false);
 
     /* Se deu sucesso, redireciono para o Login */
     if (request.status === 200) {
@@ -85,6 +91,7 @@ export default function SignUp() {
           </Link>
         </div>
       </div>
+      {loading && <FullPageLoader />}
     </div>
   );
 }

@@ -3,13 +3,13 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
   margin: 0 auto;
+  max-width: 590px;
 }
 
 .naver-container .naver {
-  max-width: 590px;
   width: 100%;
 }
 
@@ -27,7 +27,7 @@
 
 .naver-container form {
   display: grid;
-  grid-template-columns: repeat(2, 2fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: auto;
   grid-gap: 30px;
 }
@@ -70,4 +70,13 @@
   color: red;
   margin-top: 2px;
   font-size: 12px;
+}
+
+@media (max-width: 424px) {
+  .naver-container form > button {
+    grid-column: 1;
+  }
+  .naver-container form {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

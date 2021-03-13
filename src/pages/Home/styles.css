@@ -9,6 +9,7 @@
 .home-container header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-bottom: 45px;
 }
 
@@ -70,4 +71,34 @@
   transition: opacity 0.3s ease;
   width: 30px;
   outline: none;
+}
+
+@media (max-width: 991px) {
+  .home-container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .home-container .navers {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container .navers {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 575px) {
+  .home-container .navers {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .home-container h2 {
+    font-size: 30px;
+  }
+  .home-container button.add-naver {
+    width: 140px;
+    height: 35px;
+  }
 }

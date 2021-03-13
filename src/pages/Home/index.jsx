@@ -61,8 +61,8 @@ export default function Home() {
     setIsModalConfirmationOpen(false);
   }
 
-  function toggleModalNaver() {
-    setIsModalNaverOpen(!isModalNaverOpen);
+  function toggleModalNaver(keepClosed) {
+    setIsModalNaverOpen(keepClosed ? false : !isModalNaverOpen);
   }
 
   function handleClickAdd() {
@@ -97,7 +97,7 @@ export default function Home() {
 
       setIsModalConfirmationOpen(true);
       closeModalExclusion();
-      toggleModalNaver();
+      toggleModalNaver(true);
     } else {
       toast.error(request.data.message);
     }

@@ -113,8 +113,8 @@ export default function Naver() {
     <div className="naver-container">
       {isModalConfirmationOpen && (
         <ModalConfirmation
-          title="Naver Criado"
-          message="Naver criado com sucesso!"
+          title={edit ? 'Naver Atualizado' : 'Naver Criado'}
+          message={edit ? 'Naver atualizado com sucesso!' : 'Naver criado com sucesso!'}
           closeModalConfirmation={closeModalConfirmation}
         ></ModalConfirmation>
       )}

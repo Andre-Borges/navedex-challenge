@@ -16,7 +16,7 @@ export default function ModalNaver({ naver, toggleModalNaver, handleClickDelete 
     <div className="modal-naver-overlay">
       <div className="modal-naver-container">
         <div className="naver-avatar">
-          <img src={foto} alt="" />
+          <img src={naver.url} alt="avatar" onError={(e) => (e.target.src = foto)} />
         </div>
         <div>
           <h1>{naver.name}</h1>
